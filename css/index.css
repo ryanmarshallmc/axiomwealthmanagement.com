@@ -680,7 +680,8 @@
   }
 
   .image {
-    height: 50vh;
+    height: unset;
+    width: 100%;
     object-fit: contain;
   }
 }
