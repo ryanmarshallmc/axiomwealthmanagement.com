@@ -6,6 +6,38 @@
  *   Webflow.push(readyFunction);
  */
 
+window.isModalOpen = false;
+
+function toggleModal() {
+  window.isModalOpen = !window.isModalOpen;
+  const modalWrapper = document.getElementById("modalWrapper");
+  const modal = document.getElementById("modal");
+  if (window.isModalOpen) {
+    modalWrapper.style.visibility = "visible";
+    modal.style.opacity = 100;
+    document.body.style.overflow = "hidden";
+  } else {
+    modalWrapper.style.visibility = "hidden";
+    modal.style.opacity = 0;
+    document.body.style.overflow = "auto";
+  }
+}
+
+window.onload = () => {
+  const modalOpenButton = document.getElementById("modalOpenButton");
+  modalOpenButton?.addEventListener("click", toggleModal);
+  const modalCloseButton = document.getElementById("modalCloseButton");
+  modalCloseButton?.addEventListener("click", toggleModal);
+  const modalWrapper = document.getElementById("modalWrapper");
+  modalWrapper?.addEventListener("click", () => {
+    window.isModalOpen && toggleModal();
+  });
+  const modal = document.getElementById("modal");
+  modal?.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+};
+
 (() => {
   var q_ = Object.create;
   var tn = Object.defineProperty;
